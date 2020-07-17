@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   addPerson,
@@ -17,9 +17,9 @@ const Profile = () => {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={buttonClick} style={styles.button}>
+        <Pressable onPress={buttonClick} style={styles.button}>
           <Text>Add Person to the Store</Text>
-        </TouchableOpacity>
+        </Pressable>
         <Text>{person} is in the store.</Text>
       </View>
     </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import {useSelector} from 'react-redux';
 import styles from './styles';
 
@@ -13,9 +13,9 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={buttonClick} style={styles.button}>
+        <Pressable onPress={buttonClick} style={styles.button}>
           <Text>Go to the Profile Screen</Text>
-        </TouchableOpacity>
+        </Pressable>
         <Text>{person} is in the store.</Text>
       </View>
     </View>

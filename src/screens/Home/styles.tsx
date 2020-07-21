@@ -6,17 +6,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
   },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.lightBlue,
-    height: 40,
-    width: 200,
-    borderRadius: 4,
-    margin: 10,
+    backgroundColor: COLORS.white,
+    aspectRatio:1,
+    width:'30%',
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor:COLORS.grey,
+    margin:'5%'
   },
 });
 

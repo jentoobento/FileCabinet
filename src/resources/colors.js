@@ -3,7 +3,7 @@ const COLORS = {
   white: '#FFF',
   // blacks
   black: '#000',
-  grey: 'DADADA',
+  grey: '#d8d8d8',
   // blues
   lightBlue: '#AFC2DC',
   // reds

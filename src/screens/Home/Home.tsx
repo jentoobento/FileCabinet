@@ -1,22 +1,22 @@
 import React from 'react';
-import {View, Text, Pressable} from 'react-native';
-import {useSelector} from 'react-redux';
+import {View, Pressable} from 'react-native';
+import {Alert} from 'react-native';
+import {Icon} from 'react-native-elements';
+import COLORS from '../../resources/colors';
 import styles from './styles';
 
-const Home = ({ navigation }) => {
-  const person = useSelector((state) => state.people.person);
+const Home = () => {
 
   const buttonClick = () => {
-    navigation.navigate('Profile');
+    Alert.alert("I'm clicked broh!")
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <Pressable onPress={buttonClick} style={styles.button}>
-          <Text>Go to the Profile Screen</Text>
+          <Icon name='plus' type='entypo' color={COLORS.grey} size={36} />
         </Pressable>
-        <Text>{person} is in the store.</Text>
       </View>
     </View>
   );

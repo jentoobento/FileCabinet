@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import COLORS from '../../resources/colors';
 
 const styles = StyleSheet.create({
@@ -13,12 +13,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: COLORS.white,
-    aspectRatio:1,
-    width:'30%',
+    aspectRatio: 1,
+    width: '30%',
     borderRadius: 20,
     borderWidth: 2,
-    borderColor:COLORS.grey,
-    margin:'5%'
+    borderColor: COLORS.grey,
+    margin: '5%'
   },
 });
 

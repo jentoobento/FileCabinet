@@ -14,6 +14,8 @@
     "@react-navigation/drawer": "^5.8.5",
     "@react-navigation/native": "^5.7.0",
     "@react-navigation/stack": "^5.7.0",
+    "bufferutil": "^4.0.1",
+    "canvas": "^2.6.1",
     "react": "16.13.1",
     "react-native": "0.63.1",
     "react-native-elements": "^2.0.4",
@@ -25,14 +27,21 @@
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "typescript": "^3.9.7",
+    "utf-8-validate": "^5.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/runtime": "^7.10.5",
     "@react-native-community/eslint-config": "^2.0.0",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^26.1.0",
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
     "jest": "^26.1.0",
     "metro-react-native-babel-preset": "^0.60.0",
     "react-test-renderer": "16.13.1"

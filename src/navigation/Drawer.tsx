@@ -16,9 +16,8 @@ const drawerOptions = {
 
 const Drawer = () => (
   <DrawerNavigator.Navigator
-    drawerContent={({ navigation }) => <DrawerContent navigation={navigation} />}
-    drawerType="front"
-  >
+    drawerContent={({navigation}) => <DrawerContent navigation={navigation} />}
+    drawerType="front">
     <DrawerNavigator.Screen
       name="HomeStack"
       component={Stacks.HomeStack}

@@ -17,8 +17,8 @@ const screenOptions = (navigation, props) => ({
   headerTitleAlign: 'center',
   headerRight: () => (
     <Icon
-      name='favorite'
-      type='material'
+      name="favorite"
+      type="material"
       onPress={() => Alert.alert('Hi', 'Look at me!')}
     />
   ),
@@ -31,29 +31,23 @@ export const HomeStack = () => (
   <HomeStackNavigator.Navigator
     initialRouteName="Home"
     headerMode="float"
-    screenOptions={screenOptions}
-  >
-    <HomeStackNavigator.Screen
-      name="Home"
-      component={Home}
-    />
+    screenOptions={screenOptions}>
+    <HomeStackNavigator.Screen name="Home" component={Home} />
     <HomeStackNavigator.Screen
       name="Profile"
       component={Profile}
-      options={({navigation}) => (
-        screenOptions(
-          navigation,
-          {
-            headerLeft: () => (
-              <HeaderBackButton
-                onPress={() => navigation.goBack()}
-                tintColor={COLORS.pink}
-                label="Le Back"
-                labelVisible
-              />
-            ),
-          },
-      ))}
+      options={({navigation}) =>
+        screenOptions(navigation, {
+          headerLeft: () => (
+            <HeaderBackButton
+              onPress={() => navigation.goBack()}
+              tintColor={COLORS.pink}
+              label="Le Back"
+              labelVisible
+            />
+          ),
+        })
+      }
     />
   </HomeStackNavigator.Navigator>
 );

@@ -6,20 +6,19 @@ import COLORS from '../../resources/colors';
 import styles from './styles';
 
 const Home = () => {
-
   const buttonClick = () => {
-    Alert.alert("I'm clicked broh!")
-  }
+    Alert.alert("I'm clicked broh!");
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <Pressable onPress={buttonClick} style={styles.button}>
-          <Icon name='plus' type='entypo' color={COLORS.grey} size={36} />
+          <Icon name="plus" type="entypo" color={COLORS.grey} size={36} />
         </Pressable>
       </View>
     </View>
   );
-}
+};
 
 export default Home;

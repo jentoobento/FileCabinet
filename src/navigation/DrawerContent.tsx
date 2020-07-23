@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-} from 'react-native';
+import {Text, View, StyleSheet, FlatList} from 'react-native';
 import COLORS from '../resources/colors';
 
 const styles = StyleSheet.create({
@@ -38,7 +33,7 @@ const styles = StyleSheet.create({
  * Renders a scrollable list.
  * @param {Object} navigation Navigation prop from parent Navigation Container
  */
-const DrawerContent = ({ navigation }) => {
+const DrawerContent = () => {
   const drawerDataList = [
     {
       id: '0',
@@ -62,9 +57,7 @@ const DrawerContent = ({ navigation }) => {
         style={styles.list}
         data={drawerDataList}
         ItemSeparatorComponent={() => <View style={styles.listItemSeparator} />}
-        renderItem={({ item }) => (
-          <Text>{item.text}</Text>
-        )}
+        renderItem={({item}) => <Text>{item.text}</Text>}
       />
     </View>
   );

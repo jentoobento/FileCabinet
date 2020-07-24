@@ -4,7 +4,7 @@ const COLORS = {
   // blacks
   black: '#000',
   lightGrey: '#d8d8d8',
-  grey: 'rgba(0, 0, 0, 0.3)',
+  grey: '#696969',
   // blues
   lightBlue: '#AFC2DC',
   // reds

@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Pressable,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {View, Pressable, Text, TextInput} from 'react-native';
 import {Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
 import COLORS from '../../resources/colors';
@@ -14,15 +7,10 @@ import styles from './styles';
 
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
-  const [listName, changeListName] = useState('');
-
-  const addListClick = () => {
-    setModalShow(true);
-  };
-
+  const [listName, setListName] = useState('');
   const listModalDismiss = () => {
     setModalShow(false);
-    changeListName('');
+    setListName('');
   };
 
   return (
@@ -31,14 +19,9 @@ const Home = () => {
         animationType="fade"
         transparent={true}
         visible={modalShow}
-        onRequestClose={() => listModalDismiss()}>
-        <TouchableOpacity
-          style={styles.centeredView}
-          activeOpacity={1}
-          onPress={() => {
-            listModalDismiss();
-          }}>
-          <TouchableWithoutFeedback>
+        onRequestClose={listModalDismiss}>
+        <Pressable style={styles.centeredView} onPress={listModalDismiss}>
+          <Pressable>
             <View style={styles.modalView}>
               <Pressable style={styles.addIcon}>
                 <Text style={styles.textStyle}>Add Icon</Text>
@@ -46,23 +29,23 @@ const Home = () => {
               <View style={styles.addListNameBorder}>
                 <TextInput
                   style={styles.addListName}
-                  onChangeText={(text) => changeListName(text)}
+                  onChangeText={(text) => setListName(text)}
                   placeholder="Add List Name"
                   placeholderTextColor={COLORS.lightBlue}
                   value={listName}
                 />
               </View>
               <Pressable style={styles.createButton} disabled={true}>
-                <Text style={{...styles.textStyle, color: COLORS.grey}}>
+                <Text style={[styles.textStyle, {color: COLORS.grey}]}>
                   Create
                 </Text>
               </Pressable>
             </View>
-          </TouchableWithoutFeedback>
-        </TouchableOpacity>
+          </Pressable>
+        </Pressable>
       </Modal>
       <View style={styles.buttonContainer}>
-        <Pressable onPress={addListClick} style={styles.button}>
+        <Pressable onPress={() => setModalShow(true)} style={styles.button}>
           <Icon name="plus" type="entypo" color={COLORS.grey} size={36} />
         </Pressable>
       </View>

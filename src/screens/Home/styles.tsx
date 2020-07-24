@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: COLORS.white,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -63,9 +63,11 @@ const styles = StyleSheet.create({
   addListName: {
     backgroundColor: COLORS.white,
     color: COLORS.lightBlue,
-    paddingVertical: 10,
+    padding: 5,
     textAlign: 'center',
     fontWeight: 'bold',
+    minWidth: '55%',
+    maxWidth: '55%',
   },
   createButton: {
     backgroundColor: COLORS.lightGrey,
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     paddingVertical: 10,
-    width: '30%',
+    width: 80,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: COLORS.grey,

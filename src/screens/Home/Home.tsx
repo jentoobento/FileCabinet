@@ -8,6 +8,7 @@ import styles from './styles';
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
   const [listName, setListName] = useState('');
+
   const listModalDismiss = () => {
     setModalShow(false);
     setListName('');
@@ -21,27 +22,23 @@ const Home = () => {
         visible={modalShow}
         onRequestClose={listModalDismiss}>
         <Pressable style={styles.centeredView} onPress={listModalDismiss}>
-          <Pressable>
-            <View style={styles.modalView}>
-              <Pressable style={styles.addIcon}>
-                <Text style={styles.textStyle}>Add Icon</Text>
-              </Pressable>
-              <View style={styles.addListNameBorder}>
-                <TextInput
-                  style={styles.addListName}
-                  onChangeText={(text) => setListName(text)}
-                  placeholder="Add List Name"
-                  placeholderTextColor={COLORS.lightBlue}
-                  value={listName}
-                />
-              </View>
-              <Pressable style={styles.createButton} disabled={true}>
-                <Text style={[styles.textStyle, {color: COLORS.grey}]}>
-                  Create
-                </Text>
-              </Pressable>
-            </View>
-          </Pressable>
+          <View style={styles.modalView}>
+            <Pressable style={styles.addIcon}>
+              <Text style={styles.textStyle}>Add Icon</Text>
+            </Pressable>
+            <TextInput
+              style={styles.addListName}
+              onChangeText={(text) => setListName(text)}
+              placeholder="Add List Name"
+              placeholderTextColor={COLORS.lightBlue}
+              value={listName}
+            />
+            <Pressable style={styles.createButton} disabled={true}>
+              <Text style={[styles.textStyle, {color: COLORS.grey}]}>
+                Create
+              </Text>
+            </Pressable>
+          </View>
         </Pressable>
       </Modal>
       <View style={styles.buttonContainer}>

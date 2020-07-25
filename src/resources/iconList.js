@@ -27,4 +27,15 @@ exports.iconList = [
   // brand
   {name: 'apple', type: 'font-awesome'},
   {name: 'android', type: 'font-awesome'},
+  // add more categories
+  {name: 'home', type: 'entypo'},
+  {name: 'home', type: 'entypo'},
+  {name: 'home', type: 'entypo'},
+  {name: 'home', type: 'entypo'},
+  {name: 'home', type: 'entypo'},
+  {name: 'home', type: 'entypo'},
+  {name: 'home', type: 'entypo'},
+  {name: 'home', type: 'entypo'},
+  {name: 'home', type: 'entypo'},
+  {name: 'home', type: 'entypo'},
 ];

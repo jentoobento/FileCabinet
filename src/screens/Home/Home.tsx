@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {View, Pressable, Text, TextInput, Animated} from 'react-native';
+import {View, Pressable, Text, TextInput, Animated, LogBox} from 'react-native';
 import {Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
 import COLORS from '../../resources/colors';
 import styles from './styles';
 
 const Home = () => {
+  LogBox.ignoreLogs([/\useNativeDriver\b/]);
   const [animButtonHeightVal, setAnimButtonHeightVal] = useState(
     new Animated.Value(0),
   );
@@ -16,10 +17,12 @@ const Home = () => {
     new Animated.Value(0),
   );
   const [modalShow, setModalShow] = useState(false);
+  const [showIcons, setShowIcons] = useState(false);
   const [listName, setListName] = useState('');
 
   const listModalDismiss = () => {
     setModalShow(false);
+    setShowIcons(false);
     setListName('');
     setAnimButtonHeightVal(new Animated.Value(0));
     setAnimButtonWidthVal(new Animated.Value(0));
@@ -41,7 +44,12 @@ const Home = () => {
     outputRange: ['40%', '70%'],
   });
 
+  /**
+   * Drives the icon button animation. useNativeDriver does not
+   * work with width/height properties. Supressed yellowbox warning.
+   */
   const onIconExpand = () => {
+    setShowIcons(true);
     Animated.spring(animButtonHeightVal, {toValue: 1}).start();
     Animated.spring(animButtonWidthVal, {toValue: 1}).start();
     Animated.spring(animModalHeightVal, {toValue: 1}).start();

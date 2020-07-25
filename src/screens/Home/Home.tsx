@@ -1,10 +1,20 @@
 import React, {useState} from 'react';
-import {View, Pressable, Text, TextInput, Animated, LogBox} from 'react-native';
+import {
+  View,
+  Pressable,
+  Text,
+  TextInput,
+  Animated,
+  Dimensions,
+  LogBox,
+} from 'react-native';
 import {Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {iconList} from '../../resources/iconList';
 import COLORS from '../../resources/colors';
 import styles from './styles';
+
+const {height: deviceHeight} = Dimensions.get('screen');
 
 const Home = () => {
   LogBox.ignoreLogs([/\useNativeDriver\b/]);
@@ -37,7 +47,7 @@ const Home = () => {
 
   const interpolateButtonHeight = animButtonHeightVal.interpolate({
     inputRange: [0, 1],
-    outputRange: ['45%', '80%'],
+    outputRange: ['45%', '70%'],
   });
 
   const interpolateButtonWidth = animButtonWidthVal.interpolate({
@@ -93,22 +103,31 @@ const Home = () => {
               ]}>
               <Pressable onPress={onIconExpand} style={styles.addIconButton}>
                 {showIcons && (
-                  <View style={styles.iconsContainer}>
-                    {iconList.map((icon) => (
+                  <Animated.ScrollView
+                    style={styles.scroll}
+                    contentContainerStyle={styles.scrollContent}
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}>
+                    {iconList.map((icon, index) => (
                       <Pressable
-                        style={styles.iconContainer}
+                        key={`${icon.name}_${index}`}
+                        style={styles.icon}
                         onPress={() => iconPress(icon)}>
-                        <Icon name={icon.name} type={icon.type} size={40} />
+                        <Icon
+                          name={icon.name}
+                          type={icon.type}
+                          size={deviceHeight / 25}
+                        />
                       </Pressable>
                     ))}
-                  </View>
+                  </Animated.ScrollView>
                 )}
                 {!showIcons &&
                   (!listIcon.name ? (
                     <Text style={styles.textStyle}>Add Icon</Text>
                   ) : (
                     <Icon
-                      name={listIcon.name || 'question'}
+                      name={listIcon.name}
                       type={listIcon.type || 'font-awesome'}
                       size={80}
                     />

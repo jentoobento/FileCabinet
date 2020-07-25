@@ -58,19 +58,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  iconsContainer: {
+  scroll: {
     flex: 1,
+    padding: 10,
+  },
+  scrollContent: {
+    width: '100%',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    height: '100%',
-    width: '100%',
-    padding: 10,
     justifyContent: 'space-around',
     alignItems: 'center',
+    paddingBottom: 20,
   },
-  iconContainer: {
-    width: '25%',
-    height: '15%',
+  icon: {
+    width: '20%',
+    height: 55,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,

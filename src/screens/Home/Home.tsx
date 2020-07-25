@@ -107,7 +107,11 @@ const Home = () => {
                   (!listIcon.name ? (
                     <Text style={styles.textStyle}>Add Icon</Text>
                   ) : (
-                    <Icon name={listIcon.name} type={listIcon.type} size={80} />
+                    <Icon
+                      name={listIcon.name || 'question'}
+                      type={listIcon.type || 'font-awesome'}
+                      size={80}
+                    />
                   ))}
               </Pressable>
             </Animated.View>

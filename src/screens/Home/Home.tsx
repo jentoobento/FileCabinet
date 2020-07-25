@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Pressable, Text, TextInput, Animated, LogBox} from 'react-native';
 import {Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
+import {iconList} from '../../resources/iconList';
 import COLORS from '../../resources/colors';
 import styles from './styles';
 
@@ -18,12 +19,17 @@ const Home = () => {
   );
   const [modalShow, setModalShow] = useState(false);
   const [showIcons, setShowIcons] = useState(false);
+  const [listIcon, setListIcon] = useState({name: '', type: ''});
   const [listName, setListName] = useState('');
 
+  /**
+   * Close the modal, reset all animations to defaults.
+   */
   const listModalDismiss = () => {
     setModalShow(false);
     setShowIcons(false);
     setListName('');
+    setListIcon({name: '', type: ''});
     setAnimButtonHeightVal(new Animated.Value(0));
     setAnimButtonWidthVal(new Animated.Value(0));
     setAnimModalHeightVal(new Animated.Value(0));
@@ -55,6 +61,18 @@ const Home = () => {
     Animated.spring(animModalHeightVal, {toValue: 1}).start();
   };
 
+  /**
+   * Set the icon in state and reverse all the animations.
+   * @param {Object} icon The selected icon
+   */
+  const iconPress = (icon) => {
+    setListIcon(icon);
+    setShowIcons(false);
+    Animated.spring(animButtonHeightVal, {toValue: 0}).start();
+    Animated.spring(animButtonWidthVal, {toValue: 0}).start();
+    Animated.spring(animModalHeightVal, {toValue: 0}).start();
+  };
+
   return (
     <View style={styles.container}>
       <Modal
@@ -74,7 +92,23 @@ const Home = () => {
                 },
               ]}>
               <Pressable onPress={onIconExpand} style={styles.addIconButton}>
-                <Text style={styles.textStyle}>Add Icon</Text>
+                {showIcons && (
+                  <View style={styles.iconsContainer}>
+                    {iconList.map((icon) => (
+                      <Pressable
+                        style={styles.iconContainer}
+                        onPress={() => iconPress(icon)}>
+                        <Icon name={icon.name} type={icon.type} size={40} />
+                      </Pressable>
+                    ))}
+                  </View>
+                )}
+                {!showIcons &&
+                  (!listIcon.name ? (
+                    <Text style={styles.textStyle}>Add Icon</Text>
+                  ) : (
+                    <Icon name={listIcon.name} type={listIcon.type} size={80} />
+                  ))}
               </Pressable>
             </Animated.View>
             <TextInput

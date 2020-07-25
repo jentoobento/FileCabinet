@@ -4,6 +4,7 @@ import COLORS from '../../resources/colors';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.white,
   },
   buttonContainer: {
     justifyContent: 'space-around',

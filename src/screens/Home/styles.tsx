@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    height: '40%',
     width: '80%',
   },
   textStyle: {
@@ -48,11 +47,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   addIcon: {
-    height: '40%',
-    width: '40%',
-    aspectRatio: 1,
     borderRadius: 20,
     backgroundColor: COLORS.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addIconButton: {
+    flex: 1,
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },

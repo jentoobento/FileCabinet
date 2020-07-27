@@ -9,19 +9,25 @@ import COLORS from '../resources/colors';
 /**
  * Global header bar options. Set custom behavior in individual Screens.
  * @param {Object} navigation The navigation object from stack screen options
+ * @param {Object} props Any extra props to be added
  */
 const screenOptions = (navigation, props) => ({
   gestureEnabled: false,
-  headerTintColor: COLORS.lightBlue,
-  headerTitle: 'hello',
+  headerTintColor: COLORS.grey,
+  headerTitle: 'FileCabinet',
   headerTitleAlign: 'center',
   headerRight: () => (
     <Icon
-      name="favorite"
-      type="material"
+      name="ellipsis-vertical"
+      type="ionicon"
+      color={COLORS.grey}
       onPress={() => Alert.alert('Hi', 'Look at me!')}
     />
   ),
+  headerStyle: {
+    shadowColor: 'transparent',
+    backgroundColor: COLORS.white,
+  },
   ...props,
 });
 
@@ -42,8 +48,7 @@ export const HomeStack = () => (
             <HeaderBackButton
               onPress={() => navigation.goBack()}
               tintColor={COLORS.pink}
-              label="Le Back"
-              labelVisible
+              label=""
             />
           ),
         })

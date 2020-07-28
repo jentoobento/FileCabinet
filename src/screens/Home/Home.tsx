@@ -7,6 +7,8 @@ import {
   Animated,
   Dimensions,
   LogBox,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native';
 import {Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
@@ -90,64 +92,68 @@ const Home = () => {
         transparent
         visible={modalShow}
         onRequestClose={listModalDismiss}>
-        <Pressable style={styles.centeredView} onPress={listModalDismiss}>
-          <Animated.View
-            style={[styles.modalView, {height: interpolateModalHeight}]}>
+        <TouchableOpacity
+          style={styles.centeredView}
+          onPress={listModalDismiss}>
+          <TouchableWithoutFeedback>
             <Animated.View
-              style={[
-                styles.addIcon,
-                {
-                  height: interpolateButtonHeight,
-                  width: interpolateButtonWidth,
-                },
-              ]}>
-              <Pressable onPress={onIconExpand} style={styles.addIconButton}>
-                {showIcons && (
-                  <Animated.ScrollView
-                    style={styles.scroll}
-                    contentContainerStyle={styles.scrollContent}
-                    showsVerticalScrollIndicator={false}
-                    showsHorizontalScrollIndicator={false}>
-                    {iconList.map((icon, index) => (
-                      <Pressable
-                        key={`${icon.name}_${index}`}
-                        style={styles.icon}
-                        onPress={() => iconPress(icon)}>
-                        <Icon
-                          name={icon.name}
-                          type={icon.type}
-                          size={deviceHeight / 25}
-                        />
-                      </Pressable>
+              style={[styles.modalView, {height: interpolateModalHeight}]}>
+              <Animated.View
+                style={[
+                  styles.addIcon,
+                  {
+                    height: interpolateButtonHeight,
+                    width: interpolateButtonWidth,
+                  },
+                ]}>
+                <Pressable onPress={onIconExpand} style={styles.addIconButton}>
+                  {showIcons && (
+                    <Animated.ScrollView
+                      style={styles.scroll}
+                      contentContainerStyle={styles.scrollContent}
+                      showsVerticalScrollIndicator={false}
+                      showsHorizontalScrollIndicator={false}>
+                      {iconList.map((icon, index) => (
+                        <Pressable
+                          key={`${icon.name}_${index}`}
+                          style={styles.icon}
+                          onPress={() => iconPress(icon)}>
+                          <Icon
+                            name={icon.name}
+                            type={icon.type}
+                            size={deviceHeight / 25}
+                          />
+                        </Pressable>
+                      ))}
+                    </Animated.ScrollView>
+                  )}
+                  {!showIcons &&
+                    (!listIcon.name ? (
+                      <Text style={styles.textStyle}>Add Icon</Text>
+                    ) : (
+                      <Icon
+                        name={listIcon.name}
+                        type={listIcon.type || 'font-awesome'}
+                        size={80}
+                      />
                     ))}
-                  </Animated.ScrollView>
-                )}
-                {!showIcons &&
-                  (!listIcon.name ? (
-                    <Text style={styles.textStyle}>Add Icon</Text>
-                  ) : (
-                    <Icon
-                      name={listIcon.name}
-                      type={listIcon.type || 'font-awesome'}
-                      size={80}
-                    />
-                  ))}
+                </Pressable>
+              </Animated.View>
+              <TextInput
+                style={styles.addListName}
+                onChangeText={(text) => setListName(text)}
+                placeholder="Add List Name"
+                placeholderTextColor={COLORS.lightBlue}
+                value={listName}
+              />
+              <Pressable style={styles.createButton} disabled={true}>
+                <Text style={[styles.textStyle, {color: COLORS.grey}]}>
+                  Create
+                </Text>
               </Pressable>
             </Animated.View>
-            <TextInput
-              style={styles.addListName}
-              onChangeText={(text) => setListName(text)}
-              placeholder="Add List Name"
-              placeholderTextColor={COLORS.lightBlue}
-              value={listName}
-            />
-            <Pressable style={styles.createButton} disabled={true}>
-              <Text style={[styles.textStyle, {color: COLORS.grey}]}>
-                Create
-              </Text>
-            </Pressable>
-          </Animated.View>
-        </Pressable>
+          </TouchableWithoutFeedback>
+        </TouchableOpacity>
       </Modal>
       <View style={styles.buttonContainer}>
         <Pressable onPress={() => setModalShow(true)} style={styles.button}>

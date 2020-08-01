@@ -13,6 +13,7 @@ import {
 import {Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {iconList} from '../../resources/iconList';
+import strings from '../../resources/strings';
 import COLORS from '../../resources/colors';
 import styles from './styles';
 
@@ -129,7 +130,7 @@ const Home = () => {
                   )}
                   {!showIcons &&
                     (!listIcon.name ? (
-                      <Text style={styles.textStyle}>Add Icon</Text>
+                      <Text style={styles.textStyle}>{strings.add_icon}</Text>
                     ) : (
                       <Icon
                         name={listIcon.name}
@@ -142,13 +143,13 @@ const Home = () => {
               <TextInput
                 style={styles.addListName}
                 onChangeText={(text) => setListName(text)}
-                placeholder="Add List Name"
+                placeholder={strings.add_list_name}
                 placeholderTextColor={COLORS.lightBlue}
                 value={listName}
               />
               <Pressable style={styles.createButton} disabled={true}>
                 <Text style={[styles.textStyle, {color: COLORS.grey}]}>
-                  Create
+                  {strings.create}
                 </Text>
               </Pressable>
             </Animated.View>

@@ -1,9 +1,8 @@
 import React from 'react';
 import {Alert} from 'react-native';
-import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import {Icon} from 'react-native-elements';
 import Home from '../screens/Home/Home';
-import Profile from '../screens/Profile/Profile';
 import COLORS from '../resources/colors';
 
 /**
@@ -39,20 +38,5 @@ export const HomeStack = () => (
     headerMode="float"
     screenOptions={screenOptions}>
     <HomeStackNavigator.Screen name="Home" component={Home} />
-    <HomeStackNavigator.Screen
-      name="Profile"
-      component={Profile}
-      options={({navigation}) =>
-        screenOptions(navigation, {
-          headerLeft: () => (
-            <HeaderBackButton
-              onPress={() => navigation.goBack()}
-              tintColor={COLORS.pink}
-              label=""
-            />
-          ),
-        })
-      }
-    />
   </HomeStackNavigator.Navigator>
 );

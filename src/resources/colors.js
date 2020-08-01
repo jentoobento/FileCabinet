@@ -9,6 +9,8 @@ const COLORS = {
   lightBlue: '#AFC2DC',
   // reds
   pink: '#FC94AF',
+  // greens
+  green: '#A5FA9E',
 };
 
 export default COLORS;

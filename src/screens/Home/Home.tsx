@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
+import {addList} from '../../redux/actions/listActions';
 import {iconList} from '../../resources/iconList';
 import strings from '../../resources/strings';
 import COLORS from '../../resources/colors';

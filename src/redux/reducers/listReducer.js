@@ -1,7 +1,7 @@
 import * as LIST_TYPES from '../types/listTypes';
 
 const initial = {
-  lists: [],
+  lists: {},
 };
 
 const listReducer = (state = initial, action) => {
@@ -9,7 +9,10 @@ const listReducer = (state = initial, action) => {
     case LIST_TYPES.ADD_LIST:
       return {
         ...state,
-        lists: state.lists.push(action.payload),
+        lists: {
+          ...state.lists,
+          [action.payload.id]: action.payload,
+        },
       };
     default:
       return state;

@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {Modal} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {Icon} from 'react-native-elements';
 import {addList} from '../../redux/actions/listActions';
 import {iconList} from '../../resources/iconList';
@@ -22,6 +23,7 @@ const {height: deviceHeight} = Dimensions.get('screen');
 
 const Home = () => {
   LogBox.ignoreLogs([/\useNativeDriver\b/]);
+  const dispatch = useDispatch();
   const [animButtonHeightVal, setAnimButtonHeightVal] = useState(
     new Animated.Value(0),
   );
@@ -148,8 +150,29 @@ const Home = () => {
                 placeholderTextColor={COLORS.lightBlue}
                 value={listName}
               />
-              <Pressable style={styles.createButton} disabled={true}>
-                <Text style={[styles.textStyle, {color: COLORS.grey}]}>
+              <Pressable
+                disabled={listName === '' || listIcon.name === ''}
+                onPress={() => {
+                  dispatch(
+                    addList({
+                      id: Date.now(),
+                      iconName: listIcon.name,
+                      iconType: listIcon.type,
+                      name: listName,
+                    }),
+                  );
+                  listModalDismiss();
+                }}
+                style={() => [
+                  styles.createButton,
+                  {
+                    backgroundColor:
+                      listName && listIcon.name
+                        ? COLORS.green
+                        : COLORS.lightGrey,
+                  },
+                ]}>
+                <Text style={[styles.textStyle, styles.createText]}>
                   {strings.create}
                 </Text>
               </Pressable>

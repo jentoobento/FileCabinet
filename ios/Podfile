@@ -10,6 +10,8 @@ target 'FileCabinet' do
 
 
 
+  pod 'ReactNativeLocalization', :path => '../node_modules/react-native-localization'
+
   target 'FileCabinetTests' do
     inherit! :complete
     # Pods for testing

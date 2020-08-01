@@ -100,6 +100,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.grey,
   },
+  createText: {
+    color: COLORS.grey,
+    textTransform: 'uppercase',
+  },
 });
 
 export default styles;

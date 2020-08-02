@@ -9,6 +9,7 @@ import {
   LogBox,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  Keyboard,
 } from 'react-native';
 import {Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
@@ -65,9 +66,11 @@ const Home = () => {
 
   /**
    * Drives the icon button animation. useNativeDriver does not
-   * work with width/height properties. Supressed yellowbox warning.
+   * work with width/height properties. Generates a useNativeDriver
+   * yellowbox warning. Closes keyboard.
    */
   const onIconExpand = () => {
+    Keyboard.dismiss();
     setShowIcons(true);
     Animated.spring(animButtonHeightVal, {toValue: 1}).start();
     Animated.spring(animButtonWidthVal, {toValue: 1}).start();
@@ -144,6 +147,8 @@ const Home = () => {
                 style={styles.addListName}
                 onChangeText={(text) => setListName(text)}
                 placeholder={strings.add_list_name}
+                onFocus={() => iconPress(listIcon)}
+                onBlur={() => Keyboard.dismiss()}
                 placeholderTextColor={COLORS.lightBlue}
                 value={listName}
               />

@@ -8,18 +8,25 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     justifyContent: 'space-around',
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   button: {
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'flex-start',
     backgroundColor: COLORS.white,
     aspectRatio: 1,
     width: '30%',
     borderRadius: 20,
     borderWidth: 2,
     borderColor: COLORS.grey,
-    margin: '5%',
+    marginVertical: 10,
+  },
+  listFillers: {
+    height: 0,
+    width: '30%',
   },
   centeredView: {
     flex: 1,

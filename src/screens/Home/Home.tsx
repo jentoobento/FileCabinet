@@ -10,9 +10,10 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Keyboard,
+  ScrollView,
 } from 'react-native';
 import {Modal} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Icon} from 'react-native-elements';
 import {addList} from '../../redux/actions/listActions';
 import {iconList} from '../../resources/iconList';
@@ -38,6 +39,7 @@ const Home = () => {
   const [showIcons, setShowIcons] = useState(false);
   const [listIcon, setListIcon] = useState({name: '', type: ''});
   const [listName, setListName] = useState('');
+  const lists = Object.values(useSelector((state) => state.list.lists));
 
   /**
    * Close the modal, reset all animations to defaults.
@@ -91,6 +93,16 @@ const Home = () => {
     Animated.spring(animButtonWidthVal, {toValue: 0}).start();
     Animated.spring(animModalHeightVal, {toValue: 0}).start();
   };
+
+  const renderLists = ({iconName, iconType, id}) => (
+    <Pressable key={id} style={styles.button}>
+      <Icon name={iconName} type={iconType} color={COLORS.grey} size={36} />
+    </Pressable>
+  );
+
+  const listFiller = (index) => (
+    <View style={styles.listFillers} key={`listFillers-${index}`} />
+  );
 
   return (
     <View style={styles.container}>
@@ -185,11 +197,14 @@ const Home = () => {
           </TouchableWithoutFeedback>
         </TouchableOpacity>
       </Modal>
-      <View style={styles.buttonContainer}>
+      <ScrollView contentContainerStyle={styles.buttonContainer}>
+        {Object.values(lists).map((list: any) => renderLists(list))}
         <Pressable onPress={() => setModalShow(true)} style={styles.button}>
           <Icon name="plus" type="entypo" color={COLORS.grey} size={36} />
         </Pressable>
-      </View>
+        {/* added to make sure all items are left aligned */}
+        {[1, 2, 3].map((item) => listFiller(item))}
+      </ScrollView>
     </View>
   );
 };

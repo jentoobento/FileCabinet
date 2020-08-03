@@ -7,11 +7,11 @@ import thunk from 'redux-thunk';
 import {navigationRef} from './src/navigation/NavigationService';
 import Drawer from './src/navigation/Drawer';
 // import reducers for redux below
-import peopleReducer from './src/redux/reducers/peopleReducer';
+import listReducer from './src/redux/reducers/listReducer';
 
 // add reducers below
 const reducer = combineReducers({
-  people: peopleReducer,
+  list: listReducer,
 });
 const logger = createLogger();
 const middleware = [thunk, logger];

@@ -100,10 +100,6 @@ const Home = () => {
     </Pressable>
   );
 
-  const listFiller = (index) => (
-    <View style={styles.listFillers} key={`listFillers-${index}`} />
-  );
-
   return (
     <View style={styles.container}>
       <Modal
@@ -203,7 +199,9 @@ const Home = () => {
           <Icon name="plus" type="entypo" color={COLORS.grey} size={36} />
         </Pressable>
         {/* added to make sure all items are left aligned */}
-        {[1, 2, 3].map((item) => listFiller(item))}
+        <View style={styles.listFillers} />
+        <View style={styles.listFillers} />
+        <View style={styles.listFillers} />
       </ScrollView>
     </View>
   );

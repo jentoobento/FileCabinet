@@ -7,9 +7,10 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   buttonContainer: {
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    paddingHorizontal: '5%',
   },
   button: {
     display: 'flex',
@@ -18,15 +19,18 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     backgroundColor: COLORS.white,
     aspectRatio: 1,
-    width: '30%',
+    maxWidth: '30%',
+    minWidth: 150,
     borderRadius: 20,
     borderWidth: 2,
     borderColor: COLORS.grey,
-    marginVertical: 10,
+    margin: '2%',
   },
   listFillers: {
     height: 0,
-    width: '30%',
+    maxWidth: '30%',
+    minWidth: 150,
+    marginHorizontal: '2%',
   },
   centeredView: {
     flex: 1,

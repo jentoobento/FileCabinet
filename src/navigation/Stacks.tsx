@@ -3,7 +3,22 @@ import {Alert} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Icon} from 'react-native-elements';
 import Home from '../screens/Home/Home';
+import List from '../screens/List/List';
 import COLORS from '../resources/colors';
+
+// typescript schema
+interface Route {
+  route: Params;
+}
+interface Params {
+  params: List;
+}
+interface List {
+  iconName: string;
+  iconType: string;
+  name: string;
+  id: string;
+}
 
 /**
  * Global header bar options. Set custom behavior in individual Screens.
@@ -13,7 +28,7 @@ import COLORS from '../resources/colors';
 const screenOptions = (navigation, props) => ({
   gestureEnabled: false,
   headerTintColor: COLORS.grey,
-  headerTitle: 'FileCabinet',
+  headerTitle: 'FileCabinetzzzz',
   headerTitleAlign: 'center',
   headerRight: () => (
     <Icon
@@ -38,5 +53,19 @@ export const HomeStack = () => (
     headerMode="float"
     screenOptions={screenOptions}>
     <HomeStackNavigator.Screen name="Home" component={Home} />
+    <HomeStackNavigator.Screen
+      name="List"
+      component={List}
+      options={({route: {params}}: Route) => ({
+        headerTitle: (
+          <Icon
+            name={params.iconName}
+            type={params.iconType}
+            color={COLORS.grey}
+            size={46}
+          />
+        ),
+      })}
+    />
   </HomeStackNavigator.Navigator>
 );

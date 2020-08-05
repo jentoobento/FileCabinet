@@ -28,7 +28,7 @@ interface List {
 const screenOptions = (navigation, props) => ({
   gestureEnabled: false,
   headerTintColor: COLORS.grey,
-  headerTitle: 'FileCabinetzzzz',
+  headerTitle: 'FileCabinet',
   headerTitleAlign: 'center',
   headerRight: () => (
     <Icon

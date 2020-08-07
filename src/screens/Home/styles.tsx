@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalView: {
-    backgroundColor: COLORS.lightBlue,
+    backgroundColor: COLORS.aqua,
     borderRadius: 20,
     paddingVertical: 35,
     justifyContent: 'space-around',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   textStyle: {
-    color: COLORS.lightBlue,
+    color: COLORS.aqua,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   createButton: {
-    backgroundColor: COLORS.lightGrey,
+    backgroundColor: COLORS.silver,
     justifyContent: 'center',
     textAlign: 'center',
     fontWeight: 'bold',

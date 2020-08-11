@@ -23,7 +23,7 @@ import styles from './styles';
 
 const {height: deviceHeight} = Dimensions.get('screen');
 
-const Home = () => {
+const Home = ({navigation}) => {
   LogBox.ignoreLogs([/\useNativeDriver\b/]);
   const dispatch = useDispatch();
   const [animButtonHeightVal, setAnimButtonHeightVal] = useState(
@@ -108,8 +108,19 @@ const Home = () => {
     Animated.spring(animModalHeightVal, {toValue: 0}).start();
   };
 
-  const renderLists = ({iconName, iconType, id, color}) => (
-    <Pressable key={id} style={[styles.button, {backgroundColor: color}]}>
+  const renderLists = ({iconName, iconType, id, name, color}) => (
+    <Pressable
+      key={id}
+      style={[styles.button, {backgroundColor: color}]}
+      onPress={() =>
+        navigation.navigate('List', {
+          id,
+          name,
+          iconName,
+          iconType,
+          color,
+        })
+      }>
       <Icon name={iconName} type={iconType} color={COLORS.grey} size={36} />
     </Pressable>
   );

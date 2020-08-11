@@ -2,9 +2,11 @@ import LocalizedStrings from 'react-native-localization';
 
 const strings = new LocalizedStrings({
   en: {
-    change_list_color: 'Change List Color',
+    //alphabetical order
+    add_file: 'Add New File',
     add_icon: 'Add Icon',
     add_list_name: 'Add List Name',
+    change_list_color: 'Change List Color',
     create: 'Create',
   },
 });

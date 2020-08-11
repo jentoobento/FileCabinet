@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   scrollContent: {
-    width: '100%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -92,6 +91,34 @@ const styles = StyleSheet.create({
     margin: 2.5,
     borderWidth: 2,
     borderColor: COLORS.grey,
+  },
+  addColor: {
+    borderRadius: 10,
+    backgroundColor: COLORS.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+  },
+  addColorButton: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  color: {
+    width: '20%',
+    height: 55,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    margin: 2.5,
+    borderWidth: 1,
+    borderColor: COLORS.grey,
+  },
+  currentColor: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
   },
   addListName: {
     backgroundColor: COLORS.white,

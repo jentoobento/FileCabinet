@@ -64,7 +64,7 @@ const Home = ({navigation}) => {
 
   const interpolateButtonHeight = animButtonHeightVal.interpolate({
     inputRange: [0, 1],
-    outputRange: ['45%', '70%'],
+    outputRange: [deviceHeight * 0.15, deviceHeight * 0.35],
   });
 
   const interpolateButtonWidth = animButtonWidthVal.interpolate({
@@ -74,12 +74,12 @@ const Home = ({navigation}) => {
 
   const interpolateColorHeight = animColorHeightVal.interpolate({
     inputRange: [0, 1],
-    outputRange: ['15%', '30%'],
+    outputRange: [deviceHeight * 0.05, deviceHeight * 0.3],
   });
 
   const interpolateModalHeight = animModalHeightVal.interpolate({
     inputRange: [0, 1],
-    outputRange: ['40%', '70%'],
+    outputRange: ['50%', '80%'],
   });
 
   /**

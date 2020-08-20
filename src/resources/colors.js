@@ -1,16 +1,45 @@
-const COLORS = {
+export const COLORS = {
   // whites
-  white: '#FFF',
+  white: '#FFFFFF',
   // blacks
-  black: '#000',
-  lightGrey: '#d8d8d8',
-  grey: '#696969',
+  black: '#000000',
+  silver: '#DDDDDD',
+  grey: '#AAAAAA',
   // blues
-  lightBlue: '#AFC2DC',
+  navy: '#001f3f',
+  aqua: '#7FDBFF',
+  blue: '#0074D9',
+  teal: '#39CCCC',
+  //yellow
+  yellow: '#FFDC00',
   // reds
-  pink: '#FC94AF',
+  orange: '#FF851B',
+  red: '#FF4136',
+  maroon: '#85144b',
+  pink: '#F012BE',
+  purple: '#B10DC9',
   // greens
   green: '#A5FA9E',
+  olive: '#3D9970',
+  lime: '#01FF70',
 };
 
-export default COLORS;
+export const LIST_COLORS = {
+  // blues
+  navy: '#001f3f',
+  aqua: '#7FDBFF',
+  blue: '#0074D9',
+  teal: '#39CCCC',
+  //yellow
+  yellow: '#FFDC00',
+  // reds
+  orange: '#FF851B',
+  red: '#FF4136',
+  maroon: '#85144b',
+  pink: '#F012BE',
+  purple: '#B10DC9',
+  // greens
+  green: '#A5FA9E',
+  olive: '#3D9970',
+  lime: '#01FF70',
+};

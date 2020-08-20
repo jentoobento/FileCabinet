@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import COLORS from '../../resources/colors';
+import {COLORS} from '../../resources/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,24 +38,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalView: {
-    backgroundColor: COLORS.lightBlue,
     borderRadius: 20,
+    borderWidth: 5,
     paddingVertical: 35,
     justifyContent: 'space-around',
     alignItems: 'center',
-    shadowColor: COLORS.black,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    minHeight: 275,
+    minHeight: 320,
     width: '80%',
   },
   textStyle: {
-    color: COLORS.lightBlue,
+    color: COLORS.aqua,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -76,7 +68,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   scrollContent: {
-    width: '100%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -93,6 +84,34 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: COLORS.grey,
   },
+  addColor: {
+    borderRadius: 10,
+    backgroundColor: COLORS.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+  },
+  addColorButton: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  color: {
+    width: '20%',
+    height: 55,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    margin: 2.5,
+    borderWidth: 1,
+    borderColor: COLORS.grey,
+  },
+  currentColor: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+  },
   addListName: {
     backgroundColor: COLORS.white,
     textAlign: 'center',
@@ -102,7 +121,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   createButton: {
-    backgroundColor: COLORS.lightGrey,
+    backgroundColor: COLORS.silver,
     justifyContent: 'center',
     textAlign: 'center',
     fontWeight: 'bold',

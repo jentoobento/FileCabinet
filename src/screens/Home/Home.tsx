@@ -18,7 +18,7 @@ import {Icon} from 'react-native-elements';
 import {addList} from '../../redux/actions/listActions';
 import {iconList} from '../../resources/iconList';
 import strings from '../../resources/strings';
-import COLORS from '../../resources/colors';
+import {COLORS, LIST_COLORS} from '../../resources/colors';
 import styles from './styles';
 
 const {height: deviceHeight} = Dimensions.get('screen');
@@ -35,9 +35,17 @@ const Home = ({navigation}) => {
   const [animModalHeightVal, setAnimModalHeightVal] = useState(
     new Animated.Value(0),
   );
+  const [animColorHeightVal, setAnimColorHeightVal] = useState(
+    new Animated.Value(0),
+  );
   const [modalShow, setModalShow] = useState(false);
   const [showIcons, setShowIcons] = useState(false);
   const [listIcon, setListIcon] = useState({name: '', type: ''});
+  const [showColors, setShowColors] = useState(false);
+  const listColorKeys = Object.keys(LIST_COLORS);
+  const randomListColor =
+    LIST_COLORS[listColorKeys[parseInt(listColorKeys.length * Math.random())]];
+  const [listColor, setListColor] = useState(randomListColor);
   const [listName, setListName] = useState('');
   const lists = Object.values(useSelector((state) => state.list.lists));
 
@@ -49,14 +57,17 @@ const Home = ({navigation}) => {
     setShowIcons(false);
     setListName('');
     setListIcon({name: '', type: ''});
+    setShowColors(false);
+    setListColor(randomListColor);
     setAnimButtonHeightVal(new Animated.Value(0));
     setAnimButtonWidthVal(new Animated.Value(0));
+    setAnimColorHeightVal(new Animated.Value(0));
     setAnimModalHeightVal(new Animated.Value(0));
   };
 
   const interpolateButtonHeight = animButtonHeightVal.interpolate({
     inputRange: [0, 1],
-    outputRange: ['45%', '70%'],
+    outputRange: [deviceHeight * 0.15, deviceHeight * 0.35],
   });
 
   const interpolateButtonWidth = animButtonWidthVal.interpolate({
@@ -64,9 +75,14 @@ const Home = ({navigation}) => {
     outputRange: ['40%', '80%'],
   });
 
+  const interpolateColorHeight = animColorHeightVal.interpolate({
+    inputRange: [0, 1],
+    outputRange: [deviceHeight * 0.05, deviceHeight * 0.3],
+  });
+
   const interpolateModalHeight = animModalHeightVal.interpolate({
     inputRange: [0, 1],
-    outputRange: ['40%', '70%'],
+    outputRange: ['50%', '80%'],
   });
 
   /**
@@ -75,6 +91,7 @@ const Home = ({navigation}) => {
    * yellowbox warning. Closes keyboard.
    */
   const onIconExpand = () => {
+    collapseAll();
     Keyboard.dismiss();
     setShowIcons(true);
     Animated.spring(animButtonHeightVal, {toValue: 1}).start();
@@ -94,21 +111,48 @@ const Home = ({navigation}) => {
     Animated.spring(animModalHeightVal, {toValue: 0}).start();
   };
 
-  const renderLists = ({iconName, iconType, id, name}) => (
+  const renderLists = ({iconName, iconType, id, name, color}) => (
     <Pressable
       key={id}
-      style={styles.button}
+      style={[styles.button, {backgroundColor: color}]}
       onPress={() =>
         navigation.navigate('List', {
           id,
           name,
           iconName,
           iconType,
+          color,
         })
       }>
       <Icon name={iconName} type={iconType} color={COLORS.grey} size={36} />
     </Pressable>
   );
+
+  const onColorExpand = () => {
+    collapseAll();
+    Keyboard.dismiss();
+    setShowColors(true);
+    Animated.spring(animColorHeightVal, {toValue: 1}).start();
+    Animated.spring(animModalHeightVal, {toValue: 1}).start();
+  };
+
+  const colorPress = (color) => {
+    setListColor(LIST_COLORS[color]);
+    setShowColors(false);
+    Animated.spring(animColorHeightVal, {toValue: 0}).start();
+    Animated.spring(animModalHeightVal, {toValue: 0}).start();
+  };
+
+  const collapseAll = () => {
+    setListIcon(listIcon);
+    setShowIcons(false);
+    setListColor(listColor);
+    setShowColors(false);
+    Animated.spring(animButtonHeightVal, {toValue: 0}).start();
+    Animated.spring(animButtonWidthVal, {toValue: 0}).start();
+    Animated.spring(animColorHeightVal, {toValue: 0}).start();
+    Animated.spring(animModalHeightVal, {toValue: 0}).start();
+  };
 
   return (
     <View style={styles.container}>
@@ -122,7 +166,14 @@ const Home = ({navigation}) => {
           onPress={listModalDismiss}>
           <TouchableWithoutFeedback>
             <Animated.View
-              style={[styles.modalView, {height: interpolateModalHeight}]}>
+              style={[
+                styles.modalView,
+                {
+                  height: interpolateModalHeight,
+                  backgroundColor: `${listColor}70`,
+                  borderColor: listColor,
+                },
+              ]}>
               <Animated.View
                 style={[
                   styles.addIcon,
@@ -154,7 +205,9 @@ const Home = ({navigation}) => {
                   )}
                   {!showIcons &&
                     (!listIcon.name ? (
-                      <Text style={styles.textStyle}>{strings.add_icon}</Text>
+                      <Text style={[styles.textStyle, {color: listColor}]}>
+                        {strings.add_icon}
+                      </Text>
                     ) : (
                       <Icon
                         name={listIcon.name}
@@ -164,13 +217,53 @@ const Home = ({navigation}) => {
                     ))}
                 </Pressable>
               </Animated.View>
+              <Animated.View
+                style={[
+                  styles.addColor,
+                  {
+                    height: interpolateColorHeight,
+                  },
+                ]}>
+                <Pressable
+                  onPress={onColorExpand}
+                  style={styles.addColorButton}>
+                  {showColors ? (
+                    <Animated.ScrollView
+                      style={styles.scroll}
+                      contentContainerStyle={styles.scrollContent}
+                      showsVerticalScrollIndicator={false}
+                      showsHorizontalScrollIndicator={false}>
+                      {Object.keys(LIST_COLORS).map((color, index) => (
+                        <Pressable
+                          key={`${color}_${index}`}
+                          style={styles.color}
+                          onPress={() => colorPress(color)}>
+                          <View
+                            style={[
+                              styles.currentColor,
+                              {
+                                backgroundColor: LIST_COLORS[color],
+                                borderColor: LIST_COLORS[color],
+                              },
+                            ]}
+                          />
+                        </Pressable>
+                      ))}
+                    </Animated.ScrollView>
+                  ) : (
+                    <Text style={[styles.textStyle, {color: listColor}]}>
+                      {strings.change_list_color}
+                    </Text>
+                  )}
+                </Pressable>
+              </Animated.View>
               <TextInput
                 style={styles.addListName}
                 onChangeText={(text) => setListName(text)}
                 placeholder={strings.add_list_name}
-                onFocus={() => iconPress(listIcon)}
+                onFocus={() => collapseAll()}
                 onBlur={() => Keyboard.dismiss()}
-                placeholderTextColor={COLORS.lightBlue}
+                placeholderTextColor={listColor}
                 value={listName}
               />
               <Pressable
@@ -182,6 +275,7 @@ const Home = ({navigation}) => {
                       iconName: listIcon.name,
                       iconType: listIcon.type,
                       name: listName,
+                      color: listColor,
                     }),
                   );
                   listModalDismiss();
@@ -190,9 +284,7 @@ const Home = ({navigation}) => {
                   styles.createButton,
                   {
                     backgroundColor:
-                      listName && listIcon.name
-                        ? COLORS.green
-                        : COLORS.lightGrey,
+                      listName && listIcon.name ? COLORS.green : COLORS.silver,
                   },
                 ]}>
                 <Text style={[styles.textStyle, styles.createText]}>

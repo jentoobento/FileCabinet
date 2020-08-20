@@ -6,6 +6,7 @@ const strings = new LocalizedStrings({
     add_file: 'Add New File',
     add_icon: 'Add Icon',
     add_list_name: 'Add List Name',
+    change_list_color: 'Change List Color',
     create: 'Create',
   },
 });

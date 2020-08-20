@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import COLORS from '../../resources/colors';
+import {COLORS} from '../../resources/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,19 +38,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalView: {
-    backgroundColor: COLORS.aqua,
     borderRadius: 20,
+    borderWidth: 5,
     paddingVertical: 35,
     justifyContent: 'space-around',
     alignItems: 'center',
-    shadowColor: COLORS.black,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
     minHeight: 320,
     width: '80%',
   },

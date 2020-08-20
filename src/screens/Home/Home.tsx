@@ -18,7 +18,7 @@ import {Icon} from 'react-native-elements';
 import {addList} from '../../redux/actions/listActions';
 import {iconList} from '../../resources/iconList';
 import strings from '../../resources/strings';
-import COLORS from '../../resources/colors';
+import {COLORS, LIST_COLORS} from '../../resources/colors';
 import styles from './styles';
 
 const {height: deviceHeight} = Dimensions.get('screen');
@@ -42,7 +42,10 @@ const Home = ({navigation}) => {
   const [showIcons, setShowIcons] = useState(false);
   const [listIcon, setListIcon] = useState({name: '', type: ''});
   const [showColors, setShowColors] = useState(false);
-  const [listColor, setListColor] = useState('');
+  const listColorKeys = Object.keys(LIST_COLORS);
+  const randomListColor =
+    LIST_COLORS[listColorKeys[parseInt(listColorKeys.length * Math.random())]];
+  const [listColor, setListColor] = useState(randomListColor);
   const [listName, setListName] = useState('');
   const lists = Object.values(useSelector((state) => state.list.lists));
 
@@ -55,7 +58,7 @@ const Home = ({navigation}) => {
     setListName('');
     setListIcon({name: '', type: ''});
     setShowColors(false);
-    setListColor('');
+    setListColor(randomListColor);
     setAnimButtonHeightVal(new Animated.Value(0));
     setAnimButtonWidthVal(new Animated.Value(0));
     setAnimColorHeightVal(new Animated.Value(0));
@@ -134,7 +137,7 @@ const Home = ({navigation}) => {
   };
 
   const colorPress = (color) => {
-    setListColor(color);
+    setListColor(LIST_COLORS[color]);
     setShowColors(false);
     Animated.spring(animColorHeightVal, {toValue: 0}).start();
     Animated.spring(animModalHeightVal, {toValue: 0}).start();
@@ -163,7 +166,14 @@ const Home = ({navigation}) => {
           onPress={listModalDismiss}>
           <TouchableWithoutFeedback>
             <Animated.View
-              style={[styles.modalView, {height: interpolateModalHeight}]}>
+              style={[
+                styles.modalView,
+                {
+                  height: interpolateModalHeight,
+                  backgroundColor: `${listColor}70`,
+                  borderColor: listColor,
+                },
+              ]}>
               <Animated.View
                 style={[
                   styles.addIcon,
@@ -195,7 +205,9 @@ const Home = ({navigation}) => {
                   )}
                   {!showIcons &&
                     (!listIcon.name ? (
-                      <Text style={styles.textStyle}>{strings.add_icon}</Text>
+                      <Text style={[styles.textStyle, {color: listColor}]}>
+                        {strings.add_icon}
+                      </Text>
                     ) : (
                       <Icon
                         name={listIcon.name}
@@ -215,13 +227,13 @@ const Home = ({navigation}) => {
                 <Pressable
                   onPress={onColorExpand}
                   style={styles.addColorButton}>
-                  {showColors && (
+                  {showColors ? (
                     <Animated.ScrollView
                       style={styles.scroll}
                       contentContainerStyle={styles.scrollContent}
                       showsVerticalScrollIndicator={false}
                       showsHorizontalScrollIndicator={false}>
-                      {Object.keys(COLORS).map((color, index) => (
+                      {Object.keys(LIST_COLORS).map((color, index) => (
                         <Pressable
                           key={`${color}_${index}`}
                           style={styles.color}
@@ -229,26 +241,20 @@ const Home = ({navigation}) => {
                           <View
                             style={[
                               styles.currentColor,
-                              {backgroundColor: color},
+                              {
+                                backgroundColor: LIST_COLORS[color],
+                                borderColor: LIST_COLORS[color],
+                              },
                             ]}
                           />
                         </Pressable>
                       ))}
                     </Animated.ScrollView>
+                  ) : (
+                    <Text style={[styles.textStyle, {color: listColor}]}>
+                      {strings.change_list_color}
+                    </Text>
                   )}
-                  {!showColors &&
-                    (!listColor ? (
-                      <Text style={styles.textStyle}>
-                        {strings.change_list_color}
-                      </Text>
-                    ) : (
-                      <View
-                        style={[
-                          styles.currentColor,
-                          {backgroundColor: listColor},
-                        ]}
-                      />
-                    ))}
                 </Pressable>
               </Animated.View>
               <TextInput
@@ -257,7 +263,7 @@ const Home = ({navigation}) => {
                 placeholder={strings.add_list_name}
                 onFocus={() => collapseAll()}
                 onBlur={() => Keyboard.dismiss()}
-                placeholderTextColor={COLORS.aqua}
+                placeholderTextColor={listColor}
                 value={listName}
               />
               <Pressable

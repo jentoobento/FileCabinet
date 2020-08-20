@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Icon} from 'react-native-elements';
 import Home from '../screens/Home/Home';
 import List from '../screens/List/List';
-import COLORS from '../resources/colors';
+import {COLORS} from '../resources/colors';
 
 // typescript schema
 interface Route {

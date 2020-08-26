@@ -8,6 +8,8 @@ const strings = new LocalizedStrings({
     add_list_name: 'Add List Name',
     change_list_color: 'Change List Color',
     create: 'Create',
+    delete_list: 'Delete List',
+    edit_list_details: 'Edit List Details',
   },
 });
 

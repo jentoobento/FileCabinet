@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text, View, StyleSheet, FlatList} from 'react-native';
+import {Text, View, StyleSheet, FlatList, Pressable} from 'react-native';
 import {COLORS} from '../resources/colors';
+import strings from '../resources/strings';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,8 +21,15 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   listItemSeparator: {
-    height: 1,
-    backgroundColor: COLORS.pink,
+    height: 3,
+    backgroundColor: COLORS.grey,
+  },
+  item: {
+    marginVertical: 20,
+  },
+  itemText: {
+    fontSize: 20,
+    color: COLORS.grey,
   },
 });
 
@@ -37,15 +45,19 @@ const DrawerContent = () => {
   const drawerDataList = [
     {
       id: '0',
-      text: 'hi',
+      text: strings.edit_list_details,
+      styles: {},
+      textStyles: {},
+      onPress: () => {},
     },
     {
       id: '1',
-      text: 'hello',
-    },
-    {
-      id: '2',
-      text: 'bye!',
+      text: strings.delete_list,
+      styles: {},
+      textStyles: {
+        color: COLORS.darkRed,
+      },
+      onPress: () => {},
     },
   ];
 
@@ -57,7 +69,13 @@ const DrawerContent = () => {
         style={styles.list}
         data={drawerDataList}
         ItemSeparatorComponent={() => <View style={styles.listItemSeparator} />}
-        renderItem={({item}) => <Text>{item.text}</Text>}
+        renderItem={({item}) => (
+          <Pressable
+            onPress={() => item.onPress()}
+            style={[styles.item, item.styles]}>
+            <Text style={[styles.itemText, item.textStyles]}>{item.text}</Text>
+          </Pressable>
+        )}
       />
     </View>
   );

@@ -1,3 +1,6 @@
+/**
+ * App colors
+ */
 export const COLORS = {
   // whites
   white: '#FFFFFF',
@@ -15,6 +18,7 @@ export const COLORS = {
   // reds
   orange: '#FF851B',
   red: '#FF4136',
+  darkRed: '#B03A2A',
   maroon: '#85144b',
   pink: '#F012BE',
   purple: '#B10DC9',
@@ -24,6 +28,9 @@ export const COLORS = {
   lime: '#01FF70',
 };
 
+/**
+ * Colors used for list backgrounds and borders
+ */
 export const LIST_COLORS = {
   // blues
   navy: '#001f3f',

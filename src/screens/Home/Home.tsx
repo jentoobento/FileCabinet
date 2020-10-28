@@ -11,8 +11,8 @@ import {
   TouchableOpacity,
   Keyboard,
   ScrollView,
+  Modal,
 } from 'react-native';
-import {Modal} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Icon} from 'react-native-elements';
 import {addList} from '../../redux/actions/listActions';

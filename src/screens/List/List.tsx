@@ -14,14 +14,13 @@ import styles from './styles';
 import strings from '../../resources/strings';
 import {COLORS} from '../../resources/colors';
 
-const List = () => {
+const List = ({route}) => {
+  const {color} = route.params;
   const [modalShow, setModalShow] = useState(false);
-
   const date = new Date();
   const currentDate = `${
     date.getMonth() + 1
   }/${date.getDate()}/${date.getFullYear()}`;
-
   const [fileDate, setFileDate] = useState(currentDate);
   const [fileName, setFileName] = useState('');
   const [fileDescription, setFileDescription] = useState('');
@@ -37,7 +36,11 @@ const List = () => {
           onPress={() => setModalShow(false)}
           style={styles.centeredView}>
           <TouchableWithoutFeedback>
-            <View style={styles.modalView}>
+            <View
+              style={[
+                styles.modalView,
+                {backgroundColor: `${color}70`, borderColor: color},
+              ]}>
               <TextInput
                 style={styles.modalTextInput}
                 onBlur={() => Keyboard.dismiss()}
@@ -59,6 +62,7 @@ const List = () => {
                 placeholder={strings.add_description}
                 onBlur={() => Keyboard.dismiss()}
                 onChangeText={(text) => setFileDescription(text)}
+                value={fileDescription}
               />
               <Pressable
                 style={[
@@ -67,7 +71,7 @@ const List = () => {
                     backgroundColor:
                       fileName && fileDate ? COLORS.green : COLORS.silver,
                   },
-              ]}>
+                ]}>
                 <Text style={[styles.textStyle, styles.createText]}>
                   {strings.create}
                 </Text>
@@ -76,7 +80,9 @@ const List = () => {
           </TouchableWithoutFeedback>
         </TouchableOpacity>
       </Modal>
-      <Pressable style={styles.addFile} onPress={() => setModalShow(true)}>
+      <Pressable
+        style={[styles.addFile, {borderColor: color}]}
+        onPress={() => setModalShow(true)}>
         <Icon name="plus" type="entypo" color={COLORS.grey} />
         <Text style={styles.addText}>{strings.add_file}</Text>
       </Pressable>

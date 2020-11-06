@@ -112,29 +112,6 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 10,
   },
-  addListName: {
-    backgroundColor: COLORS.white,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    height: 40,
-    width: '80%',
-    borderRadius: 10,
-  },
-  createButton: {
-    backgroundColor: COLORS.silver,
-    justifyContent: 'center',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    height: 40,
-    width: '30%',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: COLORS.grey,
-  },
-  createText: {
-    color: COLORS.grey,
-    textTransform: 'uppercase',
-  },
 });
 
 export default styles;

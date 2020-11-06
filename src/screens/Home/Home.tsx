@@ -3,7 +3,6 @@ import {
   View,
   Pressable,
   Text,
-  TextInput,
   Animated,
   Dimensions,
   LogBox,
@@ -13,6 +12,7 @@ import {
   ScrollView,
   Modal,
 } from 'react-native';
+import {Button, Input} from '../../components/index';
 import {useDispatch, useSelector} from 'react-redux';
 import {Icon} from 'react-native-elements';
 import {addList} from '../../redux/actions/listActions';
@@ -257,8 +257,7 @@ const Home = ({navigation}) => {
                   )}
                 </Pressable>
               </Animated.View>
-              <TextInput
-                style={styles.addListName}
+              <Input
                 onChangeText={(text) => setListName(text)}
                 placeholder={strings.add_list_name}
                 onFocus={() => collapseAll()}
@@ -266,7 +265,7 @@ const Home = ({navigation}) => {
                 placeholderTextColor={listColor}
                 value={listName}
               />
-              <Pressable
+              <Button
                 disabled={listName === '' || listIcon.name === ''}
                 onPress={() => {
                   dispatch(
@@ -280,17 +279,9 @@ const Home = ({navigation}) => {
                   );
                   listModalDismiss();
                 }}
-                style={() => [
-                  styles.createButton,
-                  {
-                    backgroundColor:
-                      listName && listIcon.name ? COLORS.green : COLORS.silver,
-                  },
-                ]}>
-                <Text style={[styles.textStyle, styles.createText]}>
-                  {strings.create}
-                </Text>
-              </Pressable>
+                color="green"
+                text={strings.create}
+              />
             </Animated.View>
           </TouchableWithoutFeedback>
         </TouchableOpacity>

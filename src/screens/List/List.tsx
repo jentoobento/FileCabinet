@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  TextInput,
   Pressable,
   Modal,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import {Button, Input} from '../../components/index';
 import {Icon} from 'react-native-elements';
 import styles from './styles';
 import strings from '../../resources/strings';
@@ -41,41 +41,32 @@ const List = ({route}) => {
                 styles.modalView,
                 {backgroundColor: `${color}70`, borderColor: color},
               ]}>
-              <TextInput
-                style={styles.modalTextInput}
+              <Input
                 onBlur={() => Keyboard.dismiss()}
                 value={fileDate}
                 onChangeText={(text) => setFileDate(text)}
               />
-              <TextInput
-                style={styles.modalTextInput}
-                placeholder={strings.add_list_title}
+              <Input
+                placeholder={strings.add_file_title}
                 onBlur={() => Keyboard.dismiss()}
                 onChangeText={(text) => setFileName(text)}
                 value={fileName}
               />
-              <TextInput
+              <Input
                 multiline
                 numberOfLines={8}
                 maxLength={1000}
-                style={[styles.modalTextInput, styles.addDescription]}
+                style={styles.addDescription}
                 placeholder={strings.add_description}
                 onBlur={() => Keyboard.dismiss()}
                 onChangeText={(text) => setFileDescription(text)}
                 value={fileDescription}
               />
-              <Pressable
-                style={[
-                  styles.createButton,
-                  {
-                    backgroundColor:
-                      fileName && fileDate ? COLORS.green : COLORS.silver,
-                  },
-                ]}>
-                <Text style={[styles.textStyle, styles.createText]}>
-                  {strings.create}
-                </Text>
-              </Pressable>
+              <Button
+                disabled={!(fileName && fileDate)}
+                color="green"
+                text={strings.create}
+              />
             </View>
           </TouchableWithoutFeedback>
         </TouchableOpacity>

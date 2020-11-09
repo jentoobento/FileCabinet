@@ -2,20 +2,18 @@ import React from 'react';
 import {TextInput} from 'react-native';
 import styles from './styles';
 
-const Input = (props) => {
-  const {
-    style,
-    value,
-    placeholder,
-    placeholderTextColor,
-    onBlur,
-    onChangeText,
-    onFocus,
-    multiline,
-    numberOfLines,
-    maxLength,
-  } = props;
-
+const Input = ({
+  style,
+  value,
+  placeholder,
+  placeholderTextColor,
+  onBlur,
+  onChangeText,
+  onFocus,
+  multiline,
+  numberOfLines,
+  maxLength,
+}) => {
   return (
     <TextInput
       style={[styles.input, style]}

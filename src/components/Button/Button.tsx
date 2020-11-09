@@ -2,16 +2,12 @@ import React from 'react';
 import {Pressable, Text} from 'react-native';
 import styles from './styles';
 
-const Button = (props) => (
+const Button = ({disabled, onPress, style, color, text,}) => (
   <Pressable
-    disabled={props.disabled}
-    onPress={props.onPress}
-    style={[
-      styles.button,
-      props.disabled ? styles.disabled : styles[props.color],
-      props.styles,
-    ]}>
-    <Text style={styles.buttonText}>{props.text}</Text>
+    disabled={disabled}
+    onPress={onPress}
+    style={[styles.button, disabled ? styles.disabled : styles[color], style]}>
+    <Text style={styles.buttonText}>{text}</Text>
   </Pressable>
 );
 

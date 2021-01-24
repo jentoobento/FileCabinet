@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     height: 40,
-    width: '30%',
+    width: '80%',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: COLORS.grey,

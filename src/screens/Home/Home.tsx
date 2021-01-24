@@ -270,15 +270,23 @@ const Home = ({navigation}) => {
               <Button
                 disabled={listName === '' || listIcon.name === ''}
                 onPress={() => {
+                  const date = Date.now();
                   dispatch(
                     addList({
-                      id: Date.now(),
+                      id: date,
                       iconName: listIcon.name,
                       iconType: listIcon.type,
                       name: listName,
                       color: listColor,
                     }),
                   );
+                  navigation.navigate('List', {
+                    id: date,
+                    listName,
+                    iconName: listIcon.name,
+                    iconType: listIcon.type,
+                    color: listColor,
+                  });
                   listModalDismiss();
                 }}
                 color="green"

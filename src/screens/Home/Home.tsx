@@ -18,7 +18,7 @@ import {Icon} from 'react-native-elements';
 import {addList} from '../../redux/actions/listActions';
 import {iconList} from '../../resources/iconList';
 import strings from '../../resources/strings';
-import {COLORS, LIST_COLORS} from '../../resources/colors';
+import {COLORS, LIST_COLORS, adjustColor} from '../../resources/colors';
 import styles from './styles';
 
 const {height: deviceHeight} = Dimensions.get('screen');
@@ -44,7 +44,9 @@ const Home = ({navigation}) => {
   const [showColors, setShowColors] = useState(false);
   const listColorKeys = Object.keys(LIST_COLORS);
   const randomListColor =
-    LIST_COLORS[listColorKeys[parseInt(listColorKeys.length * Math.random())]];
+    LIST_COLORS[
+      listColorKeys[Number.parseInt(listColorKeys.length * Math.random(), 10)]
+    ];
   const [listColor, setListColor] = useState(randomListColor);
   const [listName, setListName] = useState('');
   const lists = Object.values(useSelector((state) => state.list.lists));
@@ -170,8 +172,8 @@ const Home = ({navigation}) => {
                 styles.modalView,
                 {
                   height: interpolateModalHeight,
-                  backgroundColor: `${listColor}70`,
-                  borderColor: listColor,
+                  backgroundColor: listColor,
+                  borderColor: adjustColor(listColor, -50),
                 },
               ]}>
               <Animated.View

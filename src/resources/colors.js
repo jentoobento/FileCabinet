@@ -43,3 +43,22 @@ export const LIST_COLORS = {
   olive: '#3D9970',
   lime: '#01FF70',
 };
+
+/**
+ * Adjusts the given hex color by a certain amount
+ * @param {String} hexColor The hex color string
+ * @param {Number} amount Positive number to lighten, negative to darken
+ */
+export const adjustColor = (hexColor = '#ffffff', amount = 0) => {
+  return (
+    '#' +
+    hexColor
+      .replace(/^#/, '')
+      .replace(/../g, (color) =>
+        (
+          '0' +
+          Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)
+        ).substr(-2),
+      )
+  );
+};

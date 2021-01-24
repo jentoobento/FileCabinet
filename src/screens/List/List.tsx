@@ -12,7 +12,7 @@ import {Button, Input} from '../../components/index';
 import {Icon} from 'react-native-elements';
 import styles from './styles';
 import strings from '../../resources/strings';
-import {COLORS} from '../../resources/colors';
+import {COLORS, adjustColor} from '../../resources/colors';
 
 const List = ({route}) => {
   const {color} = route.params;
@@ -39,7 +39,7 @@ const List = ({route}) => {
             <View
               style={[
                 styles.modalView,
-                {backgroundColor: `${color}70`, borderColor: color},
+                {backgroundColor: color, borderColor: adjustColor(color, -50)},
               ]}>
               <Input
                 onBlur={() => Keyboard.dismiss()}
